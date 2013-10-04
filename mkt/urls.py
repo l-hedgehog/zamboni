@@ -49,9 +49,22 @@ api_patterns = patterns('',
     url('', include(txn_api_patterns)),
 )
 
-home = lambda request: HttpResponse('''<a
+home = lambda request: HttpResponse('''<style>
+blink {
+  animation-duration: 1s;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2, start);
+}
+@keyframes blink {
+  80% {
+    visibility: hidden;
+  }
+}
+</style>
+<a
 href="https://github.com/mozilla/fireplace/wiki/Using-Fireplace-with-Zamboni">
-<marquee style="font-size:400px">☠ RIP ☠</marquee></a>
+<marquee style="font-size:400px"><blink>☠ RIP ☠</blink></marquee></a>
 ''' if settings.DEBUG else '')
 
 urlpatterns = patterns('',
